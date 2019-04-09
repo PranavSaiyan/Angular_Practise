@@ -7,6 +7,7 @@ import { HelloComponent } from './hello.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
+import { UsersService } from './users.service';
 const appRoutes: Routes = [
 { path: '' , component:HomeComponent },
 { path: 'user/:id', component: UserComponent}
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent, HelloComponent, UserComponent, HomeComponent ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [UsersService]
 })
 export class AppModule { }
