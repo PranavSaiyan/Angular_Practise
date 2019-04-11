@@ -16,7 +16,7 @@ countSub: Subscription;
     this.countSub.unsubscribe();
   }
   ngOnInit() {
-    const myNumbers = Observable.interval(1000);
+    const myNumbers = Observable.interval(1000).map((data:number)=>{ return 10*data});
     this.countSub = myNumbers.subscribe((n:number)=>{
       this.no=n;
     })
