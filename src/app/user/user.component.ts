@@ -10,7 +10,7 @@ export class UserComponent implements OnInit {
   id: number;
   constructor( private routeService: ActivatedRoute, private userser: UsersService) { }
   onActivate(){
-    this.userser.userActivated.next();
+    this.userser.userActivated.next(this.id);
   }
   ngOnInit() {
     this.routeService.params.subscribe((p: Params)=>{
