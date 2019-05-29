@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
+import {map, filter} from 'rxjs/operators';
 import 'rxjs/Rx';
 import {Subscription} from 'rxjs/Subscription';
 @Component({
@@ -9,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-no:number;
+no:string;
 countSub: Subscription;
   constructor() { }
   ngOnDestroy(){
@@ -17,7 +18,11 @@ countSub: Subscription;
   }
   ngOnInit() {
     const myNumbers = Observable.interval(1000).map((data:number)=>{ return 1*data});
-    this.countSub = myNumbers.subscribe((n:number)=>{
+    this.countSub = myNumbers.pipe(filter((data: number)=>{
+      return data > 0;
+    }) ,map((data: number)=>{
+    return 'Round : '+(data+1);
+  })).subscribe((n:string)=>{
       this.no=n;
     })
   const myObservable = Observable.create((observe: Observer<string>)=>{
